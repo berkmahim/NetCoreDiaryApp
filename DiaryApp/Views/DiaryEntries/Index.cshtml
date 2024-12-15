@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row pt-4">
         <div class="col-6">
-            <a href="" class="btn btn-outline-primary" style="margin-bottom: 50px">
+            <a class="btn btn-outline-primary" asp-action="Create" style="margin-bottom: 50px">
                 Create New Diary
             </a>
         </div>
@@ -34,9 +34,13 @@
                 <td>@entry.Title</td>
                 <td>@entry.Content</td>
                 <td>@entry.Created</td>
-                <td><button type="button" class="btn btn-outline-primary">Edit</button></td>
-                <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
-            </tr>
+                <td><a asp-controller="DiaryEntries" asp-action="Edit" asp-route-id="@entry.Id" type="button" class="btn btn-outline-primary">Edit</a></td>
+                <td>
+                    <form asp-controller="DiaryEntries" asp-action="Delete" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@entry.Id" />
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    </form>
+                </td>            </tr>
  
         }
 
